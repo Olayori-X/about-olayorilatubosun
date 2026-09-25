@@ -38,7 +38,33 @@
   a{color:inherit;}
   ::selection{background:var(--get);color:#0E111A;}
 
-  .wrap{max-width:720px;margin:0 auto;padding:56px 24px 90px;}
+  .wrap{max-width:720px;margin:0 auto;padding:24px 24px 90px;}
+
+  /* ---------- nav ---------- */
+  .topnav{
+    position:sticky;top:env(safe-area-inset-top,0px);
+    z-index:20;
+    background:rgba(14,17,26,.86);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:720px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    flex-wrap:wrap;
+  }
+  .topnav .brand{
+    font-family:var(--font-mono);font-size:13px;color:var(--ink);
+    text-decoration:none;
+  }
+  .topnav .links{display:flex;gap:6px;flex-wrap:wrap;}
+  .topnav .links a{
+    font-family:var(--font-mono);font-size:12px;color:var(--ink-dim);
+    text-decoration:none;padding:6px 9px;border-radius:6px;
+  }
+  .topnav .links a:hover{color:var(--ink);background:var(--panel);}
+  .topnav .links a:focus-visible{outline:2px solid var(--get);outline-offset:2px;}
 
   .statusbar{
     display:flex;align-items:center;gap:10px;
@@ -232,10 +258,46 @@
   }
 
   /* ---------- print ---------- */
+  /* ---------- avatar ---------- */
+  .avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(155deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--get);
+    margin-bottom:20px;
+  }
+  .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;}
+
+  /* ---------- about ---------- */
+  .about-list{list-style:none;margin:0;padding:0;}
+  .about-list li{
+    display:flex;gap:16px;
+    padding:16px 0;border-top:1px solid var(--line);
+  }
+  .about-list li:first-child{border-top:none;}
+  .about-list .method{align-self:flex-start;margin-top:2px;}
+  .about-list h3{font-family:var(--font-body);font-weight:600;font-size:15px;margin:0 0 3px;}
+  .about-list p{margin:0;color:var(--ink-dim);font-size:14px;max-width:56ch;}
+
+  /* ---------- filter ---------- */
+  .filters{display:flex;gap:8px;margin-bottom:18px;}
+  .filters button{
+    font-family:var(--font-mono);font-size:12px;
+    background:var(--panel);color:var(--ink-dim);
+    border:1px solid var(--line);border-radius:6px;
+    padding:6px 12px;cursor:pointer;
+  }
+  .filters button:hover{color:var(--ink);}
+  .filters button.active{color:var(--bg);background:var(--get);border-color:var(--get);}
+  .filters button:focus-visible{outline:2px solid var(--get);outline-offset:2px;}
+  .entry[hidden]{display:none;}
+
   @media print{
+    .topnav,.filters{display:none;}
     body{background:#fff;color:#111;}
     .wrap{max-width:100%;padding:0 8mm;}
-    .console,.entry,.tag,.cta{background:#fff;border-color:#ccc;}
+    .console,.entry,.tag,.cta,.about-list li{background:#fff;border-color:#ccc;}
     .console-bar,.entry-meta,.section-head .path,.statusbar,.skill-group h4,.route,.cta .path{color:#555;}
     .method.get{color:#0a7c76;background:none;border:1px solid #0a7c76;}
     .method.post{color:#a15c00;background:none;border:1px solid #a15c00;}
@@ -248,11 +310,28 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="#home">olayori/</a>
+    <div class="links">
+      <a href="#home">home</a>
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+      <a href="assets/pdf/001_Latubosun_Olayori_Resume.pdf" download>cv (pdf)</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="home">
 
   <div class="statusbar"><span class="dot" aria-hidden="true"></span>200 OK · available for hire</div>
 
   <div class="hero">
+    <!-- <div class="avatar" aria-hidden="true">OL</div> -->
+    <div class="avatar"><img src="assets/img/hero_edited.jpg" alt="Olayori Latubosun"></div>
     <h1>Olayori Latubosun</h1>
     <p class="role">Backend-leaning full-stack developer. I build the systems on the server, then ship the mobile and web clients that call them.</p>
 
@@ -271,7 +350,27 @@
       <a href="https://www.linkedin.com/in/olayori-latubosun-728a84256/" target="_blank" rel="noopener">linkedin.com/in/olayori-latubosun</a>
       <a href="https://x.com/el_resurgira" target="_blank" rel="noopener">@el_resurgira</a>
     </div>
+    <a class="cta-btn" style="margin-top:16px" href="Olayori_Latubosun_CV.pdf" download>download CV (PDF)</a>
   </div>
+
+  <section id="about">
+    <div class="section-head"><h2>About</h2><span class="path">/about</span></div>
+    <hr class="rule">
+    <ul class="about-list">
+      <li>
+        <span class="method get">GET</span>
+        <div><h3>Backend</h3><p>Designing scalable APIs and data models, and making sure the server-side logic behind a product is correct before anything is built on top of it.</p></div>
+      </li>
+      <li>
+        <span class="method post">POST</span>
+        <div><h3>Mobile &amp; web</h3><p>Shipping the Flutter and React/Next.js clients that consume those APIs, so the same backend work reaches phones and browsers.</p></div>
+      </li>
+      <li>
+        <span class="method get">GET</span>
+        <div><h3>UI engineering</h3><p>Turning product designs into interfaces that hold up — the connective layer between what a designer draws and what an API returns.</p></div>
+      </li>
+    </ul>
+  </section>
 
   <section id="experience">
     <div class="section-head"><h2>Experience</h2><span class="path">/experience</span></div>
@@ -318,28 +417,34 @@
     <div class="section-head"><h2>Projects</h2><span class="path">/projects</span></div>
     <hr class="rule">
 
-    <div class="entry">
+    <div class="filters" role="group" aria-label="Filter projects by stack">
+      <button type="button" class="active" data-filter="all">all</button>
+      <button type="button" data-filter="laravel">laravel</button>
+      <button type="button" data-filter="vanilla">vanilla php</button>
+    </div>
+
+    <div class="entry" data-tag="laravel">
       <div class="entry-top"><span class="method get">GET</span><span class="route">/bloocodes-marketplace</span></div>
       <h3>Bloocodes Marketplace</h3>
       <p>Digital product marketplace API — Laravel 12, PostgreSQL, Dockerized. Creators sell files, customers buy through secure time-limited signed download links. Multi-guard Sanctum auth, content-hash file deduplication, full OpenAPI docs.</p>
       <a class="repo" href="https://github.com/Olayori-X/bloocode_marketplace" target="_blank" rel="noopener">github.com/Olayori-X/bloocode_marketplace</a>
     </div>
 
-    <div class="entry">
+    <div class="entry" data-tag="laravel">
       <div class="entry-top"><span class="method get">GET</span><span class="route">/mansapay</span></div>
       <h3>MansaPay</h3>
       <p>Campaign-based fundraising and collection platform backend — Laravel + Sanctum, integrated with the Payaza payments API. Virtual account transfers, direct card charges, payout withdrawals for campaign creators.</p>
       <a class="repo" href="https://github.com/Olayori-X/mansapay" target="_blank" rel="noopener">github.com/Olayori-X/mansapay</a>
     </div>
 
-    <div class="entry">
+    <div class="entry" data-tag="vanilla">
       <div class="entry-top"><span class="method get">GET</span><span class="route">/newswebsite</span></div>
       <h3>NewsWebsite</h3>
       <p>Full news publishing platform — a public reader site to browse, filter, and comment on articles, plus a separate admin panel for publishing, category/reporter management and an activity log.</p>
       <a class="repo" href="https://github.com/Olayori-X/NewsWebsite" target="_blank" rel="noopener">github.com/Olayori-X/NewsWebsite</a>
     </div>
 
-    <div class="entry">
+    <div class="entry" data-tag="vanilla">
       <div class="entry-top"><span class="method get">GET</span><span class="route">/userll</span></div>
       <h3>Userll</h3>
       <p>Lightweight buy-and-sell marketplace MVP — vanilla PHP and MySQL. User auth, product listings with image uploads, shopping cart.</p>
@@ -396,7 +501,7 @@
     </div>
   </section>
 
-  <div class="cta">
+  <div class="cta" id="contact">
     <p class="path">POST /contact</p>
     <h2>Available for freelance and full-time roles</h2>
     <p>Send a message and I'll get back to you — usually within a day.</p>
@@ -406,5 +511,20 @@
   <footer class="site-foot">Olayori Latubosun · Nigeria</footer>
 
 </div>
+
+<script>
+  document.querySelectorAll('.filters button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filters button').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('#projects .entry').forEach(function(entry){
+        var show = filter === 'all' || entry.getAttribute('data-tag') === filter;
+        entry.hidden = !show;
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
