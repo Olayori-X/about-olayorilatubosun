@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olayori Latubosun — Backend-leaning Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E111A;
+    --panel:#161A26;
+    --panel-2:#1B2030;
+    --line:#2A3040;
+    --ink:#E8E6DE;
+    --ink-dim:#9198AC;
+    --ink-faint:#5B6377;
+    --get:#5CC8C2;
+    --post:#E8A34C;
+    --edu:#B79CE8;
+    --font-display:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-body:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
+  body{
+    font-family:var(--font-body);
+    line-height:1.55;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--get);color:#0E111A;}
+
+  .wrap{max-width:720px;margin:0 auto;padding:56px 24px 90px;}
+
+  .statusbar{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);font-size:12.5px;color:var(--ink-dim);
+    margin-bottom:40px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--get);flex:none;}
+
+  /* ---------- hero ---------- */
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(34px,6vw,48px);
+    line-height:1.08;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  .hero .role{
+    font-size:17px;
+    color:var(--ink-dim);
+    margin:0 0 28px;
+    max-width:44ch;
+  }
+
+  .console{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:34px;
+  }
+  .console-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 16px;
+    border-bottom:1px solid var(--line);
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);
+  }
+  .console pre{
+    margin:0;padding:16px 18px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    line-height:1.65;
+    overflow-x:auto;
+    color:var(--ink);
+  }
+  .console pre .k{color:var(--get);}
+  .console pre .s{color:var(--post);}
+  .console pre .m{color:var(--ink-dim);}
+
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:8px 10px;
+    margin-bottom:8px;
+  }
+  .contact-row a, .contact-row span{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--ink-dim);
+    text-decoration:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:6px 10px;
+    transition:border-color .15s, color .15s;
+  }
+  .contact-row a:hover{border-color:var(--get);color:var(--ink);}
+  .contact-row a:focus-visible{outline:2px solid var(--get);outline-offset:2px;}
+
+  /* ---------- sections ---------- */
+  section{margin-top:56px;}
+  .section-head{
+    display:flex;align-items:baseline;gap:10px;
+    margin-bottom:20px;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:20px;
+    margin:0;
+  }
+  .section-head .path{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  .rule{border:0;border-top:1px solid var(--line);margin:0 0 20px;}
+
+  p.lede{color:var(--ink-dim);max-width:62ch;margin:0;}
+
+  /* ---------- entries (experience/projects) ---------- */
+  .entry{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 20px;
+    background:var(--panel);
+    margin-bottom:14px;
+  }
+  .entry-top{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+    margin-bottom:6px;
+  }
+  .method{
+    font-family:var(--font-mono);
+    font-size:11.5px;font-weight:500;
+    padding:3px 8px;border-radius:5px;
+    letter-spacing:.02em;
+  }
+  .method.get{color:var(--get);background:rgba(92,200,194,.1);}
+  .method.post{color:var(--post);background:rgba(232,163,76,.1);}
+  .route{font-family:var(--font-mono);font-size:13.5px;color:var(--ink);}
+  .entry-meta{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);
+    margin-left:auto;
+  }
+  .entry h3{
+    font-family:var(--font-body);
+    font-weight:600;font-size:15.5px;
+    margin:8px 0 4px;
+  }
+  .entry .org{color:var(--ink-dim);font-weight:400;}
+  .entry p{margin:6px 0 0;color:var(--ink-dim);font-size:14.5px;max-width:62ch;}
+  .entry a.repo{
+    display:inline-block;margin-top:10px;
+    font-family:var(--font-mono);font-size:12px;color:var(--get);
+    text-decoration:none;border-bottom:1px solid rgba(92,200,194,.35);
+  }
+  .entry a.repo:hover{border-color:var(--get);}
+  .entry a.repo:focus-visible{outline:2px solid var(--get);outline-offset:2px;}
+
+  /* ---------- skills ---------- */
+  .skill-group{margin-bottom:18px;}
+  .skill-group h4{
+    font-family:var(--font-mono);
+    font-weight:400;font-size:12px;
+    color:var(--ink-faint);
+    margin:0 0 10px;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:var(--font-mono);font-size:12.5px;
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:5px 10px;
+    background:var(--panel);
+  }
+
+  /* ---------- education ---------- */
+  .edu-entry{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--line);}
+  .edu-entry:first-child{border-top:none;}
+  .edu-year{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--edu);
+    flex:none;width:88px;padding-top:2px;
+  }
+  .edu-entry h3{font-family:var(--font-body);font-weight:600;font-size:15px;margin:0 0 3px;}
+  .edu-entry p{margin:0;color:var(--ink-dim);font-size:14px;}
+
+  /* ---------- footer / contact ---------- */
+  .cta{
+    margin-top:64px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:30px 26px;
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    text-align:left;
+  }
+  .cta .path{font-family:var(--font-mono);font-size:12px;color:var(--post);margin:0 0 8px;}
+  .cta h2{font-family:var(--font-display);font-size:23px;margin:0 0 10px;}
+  .cta p{color:var(--ink-dim);margin:0 0 18px;max-width:50ch;}
+  .cta-btn{
+    display:inline-block;
+    font-family:var(--font-mono);font-size:13px;
+    color:#0E111A;background:var(--get);
+    padding:10px 16px;border-radius:7px;
+    text-decoration:none;font-weight:500;
+  }
+  .cta-btn:hover{background:#79d6d0;}
+  .cta-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+  footer.site-foot{
+    margin-top:40px;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink-faint);
+    text-align:center;
+  }
+
+  @media (max-width:520px){
+    .wrap{padding:40px 18px 70px;}
+    .entry-meta{margin-left:0;width:100%;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{background:#fff;color:#111;}
+    .wrap{max-width:100%;padding:0 8mm;}
+    .console,.entry,.tag,.cta{background:#fff;border-color:#ccc;}
+    .console-bar,.entry-meta,.section-head .path,.statusbar,.skill-group h4,.route,.cta .path{color:#555;}
+    .method.get{color:#0a7c76;background:none;border:1px solid #0a7c76;}
+    .method.post{color:#a15c00;background:none;border:1px solid #a15c00;}
+    .cta,.contact-row a{background:#fff;}
+    .cta-btn{background:#fff;color:#111;border:1px solid #111;}
+    section{margin-top:26px;}
+    .entry{break-inside:avoid;}
+    footer.site-foot{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="statusbar"><span class="dot" aria-hidden="true"></span>200 OK · available for hire</div>
+
+  <div class="hero">
+    <h1>Olayori Latubosun</h1>
+    <p class="role">Backend-leaning full-stack developer. I build the systems on the server, then ship the mobile and web clients that call them.</p>
+
+    <div class="console">
+      <div class="console-bar"><span>GET /olayori HTTP/1.1</span><span>200 OK</span></div>
+      <pre><span class="k">"name"</span>: <span class="s">"Olayori Latubosun"</span>,
+<span class="k">"location"</span>: <span class="s">"Nigeria"</span>,
+<span class="k">"stack"</span>: [<span class="s">"Laravel"</span>, <span class="s">"Go"</span>, <span class="s">"Flutter"</span>, <span class="s">"Next.js"</span>, <span class="s">"PostgreSQL"</span>],
+<span class="k">"focus"</span>: <span class="s">"APIs first, then the apps that consume them"</span> <span class="m">// backend, mobile, web</span></pre>
+    </div>
+
+    <div class="contact-row">
+      <a href="mailto:latubosun4328@gmail.com">latubosun4328@gmail.com</a>
+      <a href="tel:+2349030816273">0903 081 6273</a>
+      <a href="https://github.com/Olayori-X" target="_blank" rel="noopener">github.com/Olayori-X</a>
+      <a href="https://www.linkedin.com/in/olayori-latubosun-728a84256/" target="_blank" rel="noopener">linkedin.com/in/olayori-latubosun</a>
+      <a href="https://x.com/el_resurgira" target="_blank" rel="noopener">@el_resurgira</a>
+    </div>
+  </div>
+
+  <section id="experience">
+    <div class="section-head"><h2>Experience</h2><span class="path">/experience</span></div>
+    <hr class="rule">
+
+    <div class="entry">
+      <div class="entry-top">
+        <span class="method post">POST</span><span class="route">/cashtella</span>
+        <span class="entry-meta">05/2025 – 11/2025 · Canada (Remote)</span>
+      </div>
+      <h3>Software Developer — <span class="org">Cashtella</span></h3>
+      <p>Contributed across frontend and backend, implementing UI from product designs and integrating APIs and endpoints. Onboarded into an existing codebase and quickly delivered value across multiple areas.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <span class="method post">POST</span><span class="route">/restored-heart-foundation</span>
+        <span class="entry-meta">10/2024 – 12/2024 · Nigeria</span>
+      </div>
+      <h3>Mobile App Developer — <span class="org">Restored Heart Foundation Nigeria</span></h3>
+      <p>Implemented the application interface from product designer specs and integrated endpoints to connect app functionality end-to-end.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <span class="method post">POST</span><span class="route">/goodness-gym-fitness</span>
+        <span class="entry-meta">03/2024 – 08/2024 · Nigeria</span>
+      </div>
+      <h3>Backend Developer — <span class="org">Goodness Gym and Fitness Nigeria</span></h3>
+      <p>Built the APIs connecting frontend and backend and implemented the core business logic of the web application.</p>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <span class="method post">POST</span><span class="route">/showtech-digital-solutions</span>
+        <span class="entry-meta">03/2022 – 10/2022 · Ibadan, Nigeria</span>
+      </div>
+      <h3>Software Developer Intern — <span class="org">Showtech Digital Solutions</span></h3>
+      <p>Developed and maintained web applications with JavaScript, PHP, HTML and CSS, and assisted in testing and debugging.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><h2>Projects</h2><span class="path">/projects</span></div>
+    <hr class="rule">
+
+    <div class="entry">
+      <div class="entry-top"><span class="method get">GET</span><span class="route">/bloocodes-marketplace</span></div>
+      <h3>Bloocodes Marketplace</h3>
+      <p>Digital product marketplace API — Laravel 12, PostgreSQL, Dockerized. Creators sell files, customers buy through secure time-limited signed download links. Multi-guard Sanctum auth, content-hash file deduplication, full OpenAPI docs.</p>
+      <a class="repo" href="https://github.com/Olayori-X/bloocode_marketplace" target="_blank" rel="noopener">github.com/Olayori-X/bloocode_marketplace</a>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top"><span class="method get">GET</span><span class="route">/mansapay</span></div>
+      <h3>MansaPay</h3>
+      <p>Campaign-based fundraising and collection platform backend — Laravel + Sanctum, integrated with the Payaza payments API. Virtual account transfers, direct card charges, payout withdrawals for campaign creators.</p>
+      <a class="repo" href="https://github.com/Olayori-X/mansapay" target="_blank" rel="noopener">github.com/Olayori-X/mansapay</a>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top"><span class="method get">GET</span><span class="route">/newswebsite</span></div>
+      <h3>NewsWebsite</h3>
+      <p>Full news publishing platform — a public reader site to browse, filter, and comment on articles, plus a separate admin panel for publishing, category/reporter management and an activity log.</p>
+      <a class="repo" href="https://github.com/Olayori-X/NewsWebsite" target="_blank" rel="noopener">github.com/Olayori-X/NewsWebsite</a>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top"><span class="method get">GET</span><span class="route">/userll</span></div>
+      <h3>Userll</h3>
+      <p>Lightweight buy-and-sell marketplace MVP — vanilla PHP and MySQL. User auth, product listings with image uploads, shopping cart.</p>
+      <a class="repo" href="https://github.com/Olayori-X/Userll" target="_blank" rel="noopener">github.com/Olayori-X/Userll</a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><h2>Skills</h2><span class="path">/skills</span></div>
+    <hr class="rule">
+
+    <div class="skill-group">
+      <h4>backend</h4>
+      <div class="tags">
+        <span class="tag">PHP / Laravel</span><span class="tag">Golang</span>
+        <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+        <span class="tag">REST &amp; OpenAPI</span><span class="tag">Sanctum / Auth</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>mobile</h4>
+      <div class="tags"><span class="tag">Flutter</span></div>
+    </div>
+    <div class="skill-group">
+      <h4>web</h4>
+      <div class="tags">
+        <span class="tag">ReactJS</span><span class="tag">Next.js</span>
+        <span class="tag">JavaScript</span><span class="tag">HTML5 / CSS3</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>infra &amp; tools</h4>
+      <div class="tags"><span class="tag">Docker</span><span class="tag">Git</span></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head"><h2>Education</h2><span class="path">/education</span></div>
+    <hr class="rule">
+
+    <div class="edu-entry">
+      <div class="edu-year">2021–2024</div>
+      <div>
+        <h3>B.Sc. Computer Science</h3>
+        <p>Federal University of Agriculture, Abeokuta — Ogun, Nigeria</p>
+      </div>
+    </div>
+    <div class="edu-entry">
+      <div class="edu-year">2025</div>
+      <div>
+        <h3>NYSC Certificate</h3>
+        <p>Ministry of Human Resources, Abeere, Osogbo, Osun State</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <p class="path">POST /contact</p>
+    <h2>Available for freelance and full-time roles</h2>
+    <p>Send a message and I'll get back to you — usually within a day.</p>
+    <a class="cta-btn" href="mailto:latubosun4328@gmail.com">mailto: latubosun4328@gmail.com</a>
+  </div>
+
+  <footer class="site-foot">Olayori Latubosun · Nigeria</footer>
+
+</div>
+</body>
+</html>
